@@ -126,9 +126,9 @@ html, body {
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 1;
   opacity: 1;
-  background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 0% center/cover no-repeat !important;
+  background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 100% center/cover no-repeat !important;
   background-size: cover !important;
-  background-position: 0% center !important;
+  background-position: 100% center !important;
   pointer-events: none !important;
 }
 .hero-content {
