@@ -12,9 +12,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/transparent-logo.png" alt="Kilgore Construction Logo" class="logo-img">
-            </div>
+
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="#home" class="nav-link">Home</a>
@@ -41,8 +39,9 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Built To Last</h1>
-            <p id="hero-rotating-tagline" class="hero-tagline" aria-live="polite">Kitchens & Baths Planned Right</p>
+            <div class="hero-logo">
+                <img src="images/transparent-logo.png" alt="Kilgore Construction Logo" class="hero-logo-img">
+            </div>
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-primary">Get Free Quote</a>
                 <a href="#services" class="btn btn-secondary">Our Services</a>
@@ -85,12 +84,26 @@
 .navbar {
   background: linear-gradient(to bottom, rgba(255,255,255,0.92) 80%, rgba(255,255,255,0.65) 100%, rgba(255,255,255,0) 100%);
   box-shadow: var(--shadow);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   backdrop-filter: blur(2px);
+  transform: translateY(0);
+  height: 80px;
+  overflow: hidden;
+}
+.navbar.hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
+  opacity: 0;
+  pointer-events: none;
+}
+body {
+  padding-top: 80px;
 }
 .hero {
   background: none;
@@ -153,7 +166,7 @@
 }
 .hero-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
 }
 @media (max-width: 600px) {
@@ -1064,6 +1077,43 @@
         } else if (e.key === 'ArrowRight') {
           nextSlide();
           restartSlideshow();
+        }
+      });
+    })();
+    </script>
+    
+    <script>
+    // Navbar gradual slide out on scroll
+    (function() {
+      const navbar = document.querySelector('.navbar');
+      const hero = document.querySelector('.hero');
+      let heroHeight = 0;
+      
+      // Get hero height when page loads
+      window.addEventListener('load', function() {
+        heroHeight = hero.offsetHeight;
+      });
+      
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Calculate how far through the bottom 30% of hero we are
+        const heroBottom30Start = heroHeight * 0.7; // Start at 70% of hero height
+        const heroBottom30End = heroHeight; // End at 100% of hero height
+        const scrollProgress = scrollTop - heroBottom30Start;
+        const maxScroll = heroBottom30End - heroBottom30Start;
+        
+        if (scrollTop >= heroBottom30Start) {
+          // Calculate slide percentage (0 to 1)
+          const slidePercent = Math.min(scrollProgress / maxScroll, 1);
+          const slideDistance = slidePercent * 100; // Slide up to 100%
+          
+          navbar.style.transform = `translateY(-${slideDistance}%)`;
+          navbar.style.opacity = 1 - slidePercent;
+        } else {
+          // Reset navbar when scrolling back up
+          navbar.style.transform = 'translateY(0)';
+          navbar.style.opacity = 1;
         }
       });
     })();

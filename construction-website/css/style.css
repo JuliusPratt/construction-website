@@ -42,7 +42,7 @@ html, body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0.5rem 2rem;
 }
 .nav-logo {
@@ -127,6 +127,36 @@ html, body {
   max-width: 700px !important;
   margin: 0 auto !important;
   padding-top: 0 !important;
+}
+.hero-logo {
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+.hero-logo::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 30%, rgba(255,255,255,0.2) 60%, transparent 80%);
+  border-radius: 1rem;
+  z-index: -1;
+  padding: 1rem;
+}
+.hero-logo-img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  filter: 
+    drop-shadow(0 6px 20px rgba(0,0,0,0.4))
+    drop-shadow(1px 1px 0px rgba(0,0,0,0.4))
+    drop-shadow(-1px -1px 0px rgba(0,0,0,0.4))
+    drop-shadow(1px -1px 0px rgba(0,0,0,0.4))
+    drop-shadow(-1px 1px 0px rgba(0,0,0,0.4));
 }
 .hero h1 {
   font-size: 3rem;
