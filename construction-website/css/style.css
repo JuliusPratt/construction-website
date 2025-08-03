@@ -86,19 +86,19 @@ html, body {
   font-size: 1.1rem;
   transition: all var(--transition);
   text-shadow: 
-    -1px -1px 0 rgba(255,255,255,0.3),
-    1px -1px 0 rgba(255,255,255,0.3),
-    -1px 1px 0 rgba(255,255,255,0.3),
-    1px 1px 0 rgba(255,255,255,0.3);
+    -1px -1px 0 rgba(0,0,0,0.3),
+    1px -1px 0 rgba(0,0,0,0.3),
+    -1px 1px 0 rgba(0,0,0,0.3),
+    1px 1px 0 rgba(0,0,0,0.3);
   padding: 0.5rem 1rem;
 }
 .nav-link:hover {
   color: var(--accent);
   text-shadow: 
-    -1px -1px 0 rgba(255,255,255,0.5),
-    1px -1px 0 rgba(255,255,255,0.5),
-    -1px 1px 0 rgba(255,255,255,0.5),
-    1px 1px 0 rgba(255,255,255,0.5);
+    -1px -1px 0 rgba(0,0,0,0.5),
+    1px -1px 0 rgba(0,0,0,0.5),
+    -1px 1px 0 rgba(0,0,0,0.5),
+    1px 1px 0 rgba(0,0,0,0.5);
   transform: translateY(-1px);
 }
 .hamburger {
