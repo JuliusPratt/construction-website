@@ -127,6 +127,7 @@ html, body {
   max-width: 700px !important;
   margin: 0 auto !important;
   padding-top: 0 !important;
+  margin-top: -5vh !important;
 }
 .hero-logo {
   margin-bottom: 1rem;
@@ -148,7 +149,7 @@ html, body {
   padding: 1rem;
 }
 .hero-logo-img {
-  max-width: 500px;
+  max-width: 650px;
   width: 100%;
   height: auto;
   filter: 
