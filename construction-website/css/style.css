@@ -24,7 +24,7 @@ html, body {
 
 /* Navbar */
 .navbar {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%) !important;
+  background: transparent !important;
   box-shadow: none !important;
   position: fixed !important;
   width: 100% !important;
@@ -33,7 +33,6 @@ html, body {
   z-index: 100 !important;
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important;
-  backdrop-filter: blur(2px) !important;
   transition: background 0.3s !important;
   overflow: visible !important;
 }
@@ -83,13 +82,29 @@ html, body {
 }
 .nav-link {
   text-decoration: none;
-  color: var(--primary);
-  font-weight: 500;
+  color: var(--white);
+  font-weight: 600;
   font-size: 1.1rem;
-  transition: color var(--transition);
+  transition: all var(--transition);
+  text-shadow: 
+    0 0 10px rgba(0,0,0,0.8),
+    0 0 20px rgba(0,0,0,0.6),
+    0 0 30px rgba(0,0,0,0.4),
+    0 2px 4px rgba(0,0,0,0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
 }
 .nav-link:hover {
   color: var(--accent);
+  background: rgba(244,209,96,0.2);
+  text-shadow: 
+    0 0 15px rgba(244,209,96,0.8),
+    0 0 25px rgba(244,209,96,0.6),
+    0 0 35px rgba(244,209,96,0.4),
+    0 2px 4px rgba(0,0,0,0.9);
+  transform: translateY(-1px);
 }
 .hamburger {
   display: none;
