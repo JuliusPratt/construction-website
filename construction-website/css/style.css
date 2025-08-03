@@ -94,7 +94,6 @@ html, body {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(4px);
 }
 .nav-link:hover {
   color: var(--accent);
@@ -131,9 +130,9 @@ html, body {
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 1;
   opacity: 1;
-  background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 40% center/cover no-repeat !important;
+  background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 30% center/cover no-repeat !important;
   background-size: cover !important;
-  background-position: 40% center !important;
+  background-position: 30% center !important;
   pointer-events: none !important;
 }
 .hero-content {
