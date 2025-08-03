@@ -58,7 +58,6 @@ html, body {
   background: rgba(255,255,255,0.55);
   border-radius: 18px;
   padding: 0.1rem 0.6rem 0.1rem 0.6rem;
-  backdrop-filter: blur(6px);
   box-shadow: 0 2px 12px rgba(30,40,90,0.10);
   transition: background 0.2s;
 }
@@ -87,10 +86,10 @@ html, body {
   font-size: 1.1rem;
   transition: all var(--transition);
   text-shadow: 
-    0 0 10px rgba(0,0,0,0.8),
-    0 0 20px rgba(0,0,0,0.6),
-    0 0 30px rgba(0,0,0,0.4),
-    0 2px 4px rgba(0,0,0,0.9);
+    -1px -1px 0 rgba(255,255,255,0.3),
+    1px -1px 0 rgba(255,255,255,0.3),
+    -1px 1px 0 rgba(255,255,255,0.3),
+    1px 1px 0 rgba(255,255,255,0.3);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background: rgba(0,0,0,0.3);
@@ -99,10 +98,10 @@ html, body {
   color: var(--accent);
   background: rgba(244,209,96,0.2);
   text-shadow: 
-    0 0 15px rgba(244,209,96,0.8),
-    0 0 25px rgba(244,209,96,0.6),
-    0 0 35px rgba(244,209,96,0.4),
-    0 2px 4px rgba(0,0,0,0.9);
+    -1px -1px 0 rgba(255,255,255,0.5),
+    1px -1px 0 rgba(255,255,255,0.5),
+    -1px 1px 0 rgba(255,255,255,0.5),
+    1px 1px 0 rgba(255,255,255,0.5);
   transform: translateY(-1px);
 }
 .hamburger {
@@ -130,9 +129,9 @@ html, body {
   top: 0; left: 0; right: 0; bottom: 0;
   z-index: 1;
   opacity: 1;
-  background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 30% center/cover no-repeat !important;
+  background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 25% center/cover no-repeat !important;
   background-size: cover !important;
-  background-position: 30% center !important;
+  background-position: 25% center !important;
   pointer-events: none !important;
 }
 .hero-content {
