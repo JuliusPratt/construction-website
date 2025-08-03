@@ -127,7 +127,7 @@ html, body {
   z-index: 1;
   opacity: 1;
   background: linear-gradient(rgba(26,34,56,0.25), rgba(26,34,56,0.25)), url('../images/hero-background.jpg') 25% center/cover no-repeat !important;
-  background-size: 120% cover !important;
+  background-size: 150% cover !important;
   background-position: 25% center !important;
   pointer-events: none !important;
 }
