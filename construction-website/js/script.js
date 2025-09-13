@@ -61,36 +61,8 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Contact form handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const phone = formData.get('phone');
-        const service = formData.get('service');
-        const message = formData.get('message');
-        
-        // Simple validation
-        if (!name || !email || !service || !message) {
-            showNotification('Please fill in all required fields.', 'error');
-            return;
-        }
-        
-        if (!isValidEmail(email)) {
-            showNotification('Please enter a valid email address.', 'error');
-            return;
-        }
-        
-        // Simulate form submission
-        showNotification('Thank you! Your message has been sent. We\'ll get back to you soon.', 'success');
-        this.reset();
-    });
-}
+// Contact form handling - removed to allow Netlify form submission
+// The form is now handled by Netlify directly
 
 // Email validation function
 function isValidEmail(email) {
