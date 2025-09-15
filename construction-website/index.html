@@ -637,53 +637,11 @@ body {
                 <p>A full gallery of our construction process is coming soon!</p>
             </div>
             <div class="library-image-container">
-                <div class="slideshow-container">
-                    <div class="slide active">
-                        <img src="images/under-construction.jpg" alt="A construction site in progress.">
-                    </div>
-                    <div class="slide">
-                        <img src="images/1.png" alt="Job site photo 1">
-                    </div>
-                    <div class="slide">
-                        <img src="images/2.png" alt="Job site photo 2">
-                    </div>
-                    <div class="slide">
-                        <img src="images/3.png" alt="Job site photo 3">
-                    </div>
-                    <div class="slide">
-                        <img src="images/4.png" alt="Job site photo 4">
-                    </div>
-                    <div class="slide">
-                        <img src="images/5.png" alt="Job site photo 5">
-                    </div>
-                    <div class="slide">
-                        <img src="images/6.png" alt="Job site photo 6">
-                    </div>
-                    <div class="slide">
-                        <img src="images/7.png" alt="Job site photo 7">
-                    </div>
-                    <div class="slide">
-                        <img src="images/8.png" alt="Job site photo 8">
-                    </div>
-                    <div class="slide">
-                        <img src="images/9.png" alt="Job site photo 9">
-                    </div>
-                    <div class="slide">
-                        <img src="images/10.png" alt="Job site photo 10">
-                    </div>
+                <div class="slideshow-container" id="jobsite-slideshow">
+                    <!-- Slides will be dynamically loaded here -->
                 </div>
-                <div class="slideshow-nav">
-                    <button class="nav-dot active" data-slide="0"></button>
-                    <button class="nav-dot" data-slide="1"></button>
-                    <button class="nav-dot" data-slide="2"></button>
-                    <button class="nav-dot" data-slide="3"></button>
-                    <button class="nav-dot" data-slide="4"></button>
-                    <button class="nav-dot" data-slide="5"></button>
-                    <button class="nav-dot" data-slide="6"></button>
-                    <button class="nav-dot" data-slide="7"></button>
-                    <button class="nav-dot" data-slide="8"></button>
-                    <button class="nav-dot" data-slide="9"></button>
-                    <button class="nav-dot" data-slide="10"></button>
+                <div class="slideshow-nav" id="jobsite-nav">
+                    <!-- Navigation dots will be dynamically loaded here -->
                 </div>
             </div>
         </div>
@@ -830,6 +788,7 @@ body {
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/simple-gallery.js"></script>
     
     <script>
     // Contact form handling for Netlify
@@ -852,231 +811,121 @@ body {
     </script>
     
     <script>
-    // Gallery functionality
+    // Job Site Slideshow - Simple hardcoded approach
     (function() {
-      const modal = document.getElementById('gallery-modal');
-      const modalContent = modal.querySelector('.gallery-modal-content');
-      const closeBtn = modal.querySelector('.gallery-close');
-      const prevBtn = modal.querySelector('.gallery-prev');
-      const nextBtn = modal.querySelector('.gallery-next');
-      const galleryImage = document.getElementById('gallery-image');
-      const galleryTitle = document.getElementById('gallery-title');
-      const galleryCounter = modal.querySelector('.gallery-counter');
-      const galleryContainer = modal.querySelector('.gallery-container');
-      const galleryPlaceholder = modal.querySelector('.gallery-placeholder');
-      
-      let currentService = '';
-      let currentIndex = 0;
-      let currentImages = [];
-      
-      // Sample gallery data - replace with actual images
-      const galleryData = {
-        kitchen: {
-          title: 'Kitchen Remodeling Gallery',
-          images: [
-            'images/1.png'
-          ]
-        },
-        bathroom: {
-          title: 'Bathroom Renovations Gallery',
-          images: [
-            'images/4.png',
-            'images/6.png'
-          ]
-        },
-        interior: {
-          title: 'Interior / Whole-Home Updates Gallery',
-          images: [
-            'images/sunroom.png',
-            'images/luxury-living-room.png',
-            'images/closet.png'
-          ]
-        },
-        additions: {
-          title: 'Additions & Structural Improvements Gallery',
-          images: [
-            // Add actual image paths here when available
-          ]
-        },
-        cabinetry: {
-          title: 'Selective Custom Cabinetry & Built-Ins Gallery',
-          images: [
-            'images/wine-storage.png',
-            'images/2.png',
-            'images/7.png',
-            'images/9.png'
-          ]
-        }
-      };
-      
-      // Gallery button click handlers
-      document.querySelectorAll('.gallery-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const service = btn.getAttribute('data-service');
-          openGallery(service);
+      function loadJobSiteSlideshow() {
+        // Hardcoded list of job site images - just update this array when you add images
+        const images = [
+          '3.png',
+          '5.png', 
+          '8.png',
+          '10.png',
+          '11.png',
+          '13.png',
+          'under-construction.jpg'
+        ];
+        
+        const slideshowContainer = document.getElementById('jobsite-slideshow');
+        const navContainer = document.getElementById('jobsite-nav');
+        
+        // Clear existing content
+        slideshowContainer.innerHTML = '';
+        navContainer.innerHTML = '';
+        
+        // Create slides
+        images.forEach((image, index) => {
+          const slide = document.createElement('div');
+          slide.className = `slide ${index === 0 ? 'active' : ''}`;
+          slide.innerHTML = `<img src="images/gallery-jobsite/${image}" alt="Job site photo ${index + 1}">`;
+          slideshowContainer.appendChild(slide);
+          
+          // Create navigation dots
+          const dot = document.createElement('button');
+          dot.className = `nav-dot ${index === 0 ? 'active' : ''}`;
+          dot.setAttribute('data-slide', index);
+          navContainer.appendChild(dot);
         });
-      });
-      
-      function openGallery(service) {
-        currentService = service;
-        currentIndex = 0;
-        currentImages = galleryData[service]?.images || [];
         
-        galleryTitle.textContent = galleryData[service]?.title || 'Project Gallery';
-        
-        if (currentImages.length > 0) {
-          showImage();
-          galleryContainer.style.display = 'flex';
-          galleryPlaceholder.style.display = 'none';
-        } else {
-          galleryContainer.style.display = 'none';
-          galleryPlaceholder.style.display = 'block';
-        }
-        
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        // Initialize slideshow functionality
+        initializeSlideshow();
       }
       
-      function showImage() {
-        if (currentImages.length === 0) return;
+      function initializeSlideshow() {
+        const slides = document.querySelectorAll('#jobsite-slideshow .slide');
+        const dots = document.querySelectorAll('#jobsite-nav .nav-dot');
+        let currentSlide = 0;
+        let slideInterval;
+        const SLIDE_DURATION = 4000;
         
-        galleryImage.src = currentImages[currentIndex];
-        galleryCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        function showSlide(index) {
+          slides.forEach(slide => slide.classList.remove('active'));
+          dots.forEach(dot => dot.classList.remove('active'));
+          
+          slides[index].classList.add('active');
+          dots[index].classList.add('active');
+          
+          currentSlide = index;
+        }
         
-        // Update navigation button states
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === currentImages.length - 1;
-      }
-      
-      function showPrev() {
-        if (currentIndex > 0) {
-          currentIndex--;
-          showImage();
+        function nextSlide() {
+          const next = (currentSlide + 1) % slides.length;
+          showSlide(next);
         }
-      }
-      
-      function showNext() {
-        if (currentIndex < currentImages.length - 1) {
-          currentIndex++;
-          showImage();
-        }
-      }
-      
-      function closeGallery() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      
-      // Event listeners
-      closeBtn.addEventListener('click', closeGallery);
-      prevBtn.addEventListener('click', showPrev);
-      nextBtn.addEventListener('click', showNext);
-      
-      // Close on backdrop click
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          closeGallery();
-        }
-      });
-      
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (!modal.classList.contains('active')) return;
         
-        switch(e.key) {
-          case 'Escape':
-            closeGallery();
-            break;
-          case 'ArrowLeft':
-            showPrev();
-            break;
-          case 'ArrowRight':
-            showNext();
-            break;
+        function startSlideshow() {
+          if (slideInterval) clearInterval(slideInterval);
+          slideInterval = setInterval(nextSlide, SLIDE_DURATION);
         }
-      });
+        
+        function stopSlideshow() {
+          if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+          }
+        }
+        
+        function restartSlideshow() {
+          stopSlideshow();
+          setTimeout(startSlideshow, 100);
+        }
+        
+        // Initialize
+        if (slides.length > 0) {
+          showSlide(0);
+          startSlideshow();
+        }
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            showSlide(index);
+            restartSlideshow();
+          });
+        });
+        
+        // Pause on hover
+        const slideshowContainer = document.getElementById('jobsite-slideshow');
+        slideshowContainer.addEventListener('mouseenter', stopSlideshow);
+        slideshowContainer.addEventListener('mouseleave', restartSlideshow);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
+            const prev = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(prev);
+            restartSlideshow();
+          } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            restartSlideshow();
+          }
+        });
+      }
+      
+      // Load slideshow when DOM is ready
+      document.addEventListener('DOMContentLoaded', loadJobSiteSlideshow);
     })();
     </script>
     
-    <script>
-    // Job Site Slideshow functionality
-    (function() {
-      const slides = document.querySelectorAll('.slide');
-      const dots = document.querySelectorAll('.nav-dot');
-      let currentSlide = 0;
-      let slideInterval;
-      const SLIDE_DURATION = 4000; // 4 seconds per slide
-      
-      function showSlide(index) {
-        // Remove active class from all slides and dots
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // Add active class to current slide and dot
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
-        
-        currentSlide = index;
-      }
-      
-      function nextSlide() {
-        const next = (currentSlide + 1) % slides.length;
-        showSlide(next);
-      }
-      
-      function startSlideshow() {
-        // Clear any existing interval first
-        if (slideInterval) {
-          clearInterval(slideInterval);
-        }
-        // Start new interval with exact timing
-        slideInterval = setInterval(nextSlide, SLIDE_DURATION);
-      }
-      
-      function stopSlideshow() {
-        if (slideInterval) {
-          clearInterval(slideInterval);
-          slideInterval = null;
-        }
-      }
-      
-      function restartSlideshow() {
-        stopSlideshow();
-        // Small delay to ensure clean restart
-        setTimeout(startSlideshow, 100);
-      }
-      
-      // Initialize slideshow
-      showSlide(0);
-      startSlideshow();
-      
-      // Dot navigation
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          showSlide(index);
-          restartSlideshow();
-        });
-      });
-      
-      // Pause slideshow on hover
-      const slideshowContainer = document.querySelector('.slideshow-container');
-      slideshowContainer.addEventListener('mouseenter', stopSlideshow);
-      slideshowContainer.addEventListener('mouseleave', restartSlideshow);
-      
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          const prev = (currentSlide - 1 + slides.length) % slides.length;
-          showSlide(prev);
-          restartSlideshow();
-        } else if (e.key === 'ArrowRight') {
-          nextSlide();
-          restartSlideshow();
-        }
-      });
-    })();
-    </script>
     
     <script>
     // Navbar gradual slide out on scroll
